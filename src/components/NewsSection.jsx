@@ -4,7 +4,6 @@ import { NewsCard } from "./";
 import { Link } from "react-router-dom";
 
 const NewsSection = ({ news, direction, category}) => {
-  
   return (
     <Stack mb={5}>
       <Link to={category && `/category/${category}`}>

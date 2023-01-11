@@ -1,12 +1,13 @@
 import React from "react";
-import { Stack } from "@mui/material";
+import { Stack, AppBar, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 import { SearchBar, CategoryBar } from "./";
 
 const Navbar = ({ selectedCategory, setSelectedCategory }) => {
   return (
-    <Stack
-      direction="row"
+    <AppBar
+      position="static"
+      elevation={0}
       alignItems="center"
       p={2}
       sx={{
@@ -16,23 +17,35 @@ const Navbar = ({ selectedCategory, setSelectedCategory }) => {
         justifyContent: "space-between",
       }}
     >
-      <Link to="/" style={{ display: "flex", alignItems: "center"}}>
-        <span className="logo">C</span>
-        <span className="logo">C</span>
-        <span className="logo">B</span>
-      </Link>
-      <Stack
-        direction="row"
-        alignItems="center"
-        sx={{ justifyContent: "space-between" }}
-      >
-        <CategoryBar
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <SearchBar />
-      </Stack>
-    </Stack>
+      <Toolbar sx={{ flexWrap: 'wrap', justifyContent: "space-between"}}>
+        <Link
+          to="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <span className="logo">C</span>
+          <span className="logo">C</span>
+          <span className="logo">B</span>
+        </Link>
+
+        <Stack
+          direction={{ sm: "column", md: "row" }}
+          alignItems="center"
+          px={2}
+          py={1}
+          sx={{ justifyContent: "space-between" }}
+          overflow='auto'
+        >
+          <CategoryBar
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+          <SearchBar />
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 };
 

@@ -84,6 +84,12 @@ input {
   height: 1.125rem;
   border-left: 0.225rem solid #e91802;
 }
+.loader{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media screen and (max-width: 900px) {
   .category-btn{

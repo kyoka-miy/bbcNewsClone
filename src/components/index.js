@@ -7,4 +7,5 @@ export { default as CategoryBar } from './CategoryBar';
 export { default as NewsCard } from './NewsCard';
 export { default as CategoryDetail } from './CategoryDetail';
 export { default as NewsSection } from './NewsSection';
+export { default as Loader } from './Loader';
 

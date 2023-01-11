@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { NewsSection } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { NewsSection, Loader } from "./";
+import { useGetNewsCategoryQuery } from "../services/newsApi";
 
-const Feed = ({ selectedCategory, setSelectedCategory }) => {
-  const [news, setNews] = useState([]);
-  const [business, setBusiness] = useState([]);
-  const [health, setHealth] = useState([]);
-  setSelectedCategory('')
+const Feed = ({ setSelectedCategory }) => {
+  setSelectedCategory("");
 
-  useEffect(() => {
-    fetchFromAPI(`top-headlines?country=us&category=general`).then((data) =>
-      setNews(data.articles)
-    );
-    fetchFromAPI(
-      `top-headlines?country=us&category=business`
-    ).then((data) => setBusiness(data.articles));
-    fetchFromAPI(
-      `top-headlines?country=us&category=health`
-    ).then((data) => setHealth(data.articles));
-  }, []);
-//   if (!news?.length || !business?.length || !health?.length) return "Loading...";
+  const { data: general, isFetching } = useGetNewsCategoryQuery("general");
+  const { data: business, isFetching: bisFetching } =
+    useGetNewsCategoryQuery("business");
+  const { data: health, isFetching: hisFetching } =
+    useGetNewsCategoryQuery("health");
+  const generalNews = general?.articles;
+  const businessNews = business?.articles;
+  const healthNews = health?.articles;
+  if (isFetching || bisFetching || hisFetching) return <Loader />;
+
   return (
     <Stack sx={{ flexDirection: "column" }}>
       <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
@@ -33,9 +28,18 @@ const Feed = ({ selectedCategory, setSelectedCategory }) => {
             Welcome to CCB.com
           </span>
         </Typography>
-        <NewsSection news={news.slice(0, 8)} category={'General'}></NewsSection>
-        <NewsSection news={business.slice(0, 4)} category={'Business'}></NewsSection>
-        <NewsSection news={health.slice(0, 4)} category={'Health'}></NewsSection>
+        <NewsSection
+          news={generalNews.slice(0, 8)}
+          category={"General"}
+        ></NewsSection>
+        <NewsSection
+          news={businessNews.slice(0, 4)}
+          category={"Business"}
+        ></NewsSection>
+        <NewsSection
+          news={healthNews.slice(0, 4)}
+          category={"Health"}
+        ></NewsSection>
       </Box>
       <Box
         sx={{

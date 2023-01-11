@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { News } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { News, Loader } from "./";
+import { useGetNewsCategoryQuery } from "../services/newsApi";
 import { useParams } from "react-router-dom";
 
 const CategoryDetail = () => {
-  const [news, setNews] = useState([]);
   const { selectedCategory } = useParams();
+  const { data, isFetching } = useGetNewsCategoryQuery(selectedCategory);
+  const news = data?.articles;
+  if (isFetching) return <Loader />;
 
-  useEffect(() => {
-    fetchFromAPI(`top-headlines?country=us&category=${selectedCategory}`).then(
-      (data) => setNews(data.articles)
-    );
-  }, [selectedCategory]);
   return (
     <Stack sx={{ flexDirection: "column" }}>
       <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
@@ -20,7 +17,7 @@ const CategoryDetail = () => {
           <span
             style={{
               color: "#4a4a4a",
-              textTransform: 'capitalize'
+              textTransform: "capitalize",
             }}
           >
             {selectedCategory}
@@ -39,7 +36,7 @@ const CategoryDetail = () => {
           variant="body2"
           sx={{ mt: 1.5, color: "#4a4a4a" }}
         >
-          Copyright © 2022 JSM Media
+          Copyright © 2023 Kyoka M
         </Typography>
       </Box>
     </Stack>

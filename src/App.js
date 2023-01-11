@@ -19,7 +19,6 @@ const App = () => {
             exact
             element={
               <Feed
-                selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
               />
             }
@@ -32,7 +31,6 @@ const App = () => {
             path="/search/:searchTerm"
             element={
               <SearchFeed
-                selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
               />
             }

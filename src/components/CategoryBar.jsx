@@ -4,7 +4,6 @@ import { categories } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 const CategoryBar = ({ selectedCategory, setSelectedCategory }) => {
-
   return (
     <Stack
       direction="row"

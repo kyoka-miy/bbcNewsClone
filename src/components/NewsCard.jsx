@@ -1,11 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Typography, Card, CardContent, CardMedia } from "@mui/material";
-import {
-  demoThumbnailUrl,
-  demoVideoUrl,
-  demoVideoTitle,
-} from "../utils/constants";
 
 const NewsCard = ({
   news: {
