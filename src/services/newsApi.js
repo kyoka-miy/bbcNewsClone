@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const newsApiHeaders = {
-    "X-Api-Key": "a851656a4602487f9f922a8d57d4bac2",
+    "X-Api-Key": "",
   };
   const createRequest = (url) => ({ url, headers: newsApiHeaders });
   
