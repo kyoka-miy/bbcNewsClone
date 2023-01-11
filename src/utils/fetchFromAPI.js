@@ -4,10 +4,10 @@ export const BASE_URL = "https://newsapi.org/v2";
 
 const options = {
   params: {
-    apiKey: "a851656a4602487f9f922a8d57d4bac2",
+    apiKey: "",
   },
   headers: {
-    "X-Api-Key": "a851656a4602487f9f922a8d57d4bac2",
+    "X-Api-Key": "",
   },
 };
 
